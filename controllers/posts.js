@@ -1,13 +1,16 @@
 const Post = require('../models/post');
 const S3 = require('aws-sdk/clients/s3');
 const { v4: uuidv4 } = require('uuid'); // import uuid to generate random ID's
+const post = require('../models/post');
+const user = require('../models/user');
 const BUCKET_NAME = process.env.AWS_BUCKET
 
 const s3 = new S3(); // initialize s3 constructor
 
 module.exports = {
     create,
-    index
+    index,
+    deletePost,
 }
 
 function create(req, res){
@@ -38,5 +41,18 @@ async function index(req, res){
         res.status(200).json({posts})
     } catch(err){
 
+    }
+}
+
+
+async function deletePost(req, res){
+    try{
+        const post = await Post.findByIdAndDelete(req.params.id);
+        res.status(200).json({post})
+
+        // if(!user.equals(req.user.id)) return res.sendStatus(404);
+        // res.send(post)
+    } catch (err){
+        res.status(400).json({err})
     }
 }

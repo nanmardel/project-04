@@ -1,9 +1,11 @@
 import React from 'react';
-import { Card, Dimmer, Segment, Image  } from 'semantic-ui-react'
+import { Card, Dimmer, Segment, Image } from 'semantic-ui-react';
+
 import PostCard from '../PostCard/PostCard';
 import Loader from '../Loader/Loader';
 
-export default function PostFeed({posts, numPhotosCol, isProfile, loading, addLike, removeLike, user }){
+
+export default function PostFeed({posts, numPhotosCol, isProfile, loading, addLike, removeLike, user, deletePost }){
 
     return (
         <Card.Group itemsPerRow={numPhotosCol} stackable>
@@ -23,11 +25,11 @@ export default function PostFeed({posts, numPhotosCol, isProfile, loading, addLi
               isProfile={isProfile}
               addLike={addLike}
               removeLike={removeLike}
+              deletePost={deletePost}
               user={user}
             />
           );
         })}
       </Card.Group>
-  
     )
 }

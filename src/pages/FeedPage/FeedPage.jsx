@@ -3,11 +3,14 @@ import PageHeader from '../../components/Header/Header';
 import AddPostForm from '../../components/AddPostForm/AddPostForm';
 import PostGallery from '../../components/PostGallery/PostGallery';
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import * as postsAPI from '../../utils/postApi'
+import * as postsAPI  from '../../utils/postApi'
+import * as likesAPI from '../../utils/likeApi';
+
 import Loading from "../../components/Loader/Loader";
 
 
 import {Grid} from "semantic-ui-react";
+// import { post } from '../../../routes/api/users';
 
 
 export default function Feed({user,handleLogout}){
@@ -16,6 +19,30 @@ export default function Feed({user,handleLogout}){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    async function addLike(postId) {
+        try {
+            const data = await likesAPI.create(postId)
+            console.log(data, '<-- the response from the server when we make a like');
+            getPosts();
+        } catch(err){
+            console.log(err)
+            setError(err.message)
+        }
+    }
+
+    async function removeLike(likeId){
+        try {
+            const data = await likesAPI.create(likeId)
+            console.log(data, '<- this is the response from the server when we remove a like');
+            getPosts()
+        }catch(err) {
+            console.log(err);
+            setError(err.message);
+        }
+    }
+
+
+    // C create in CRUD
     async function handleAddPost(post){
         try{
             setLoading(true);
@@ -48,49 +75,61 @@ export default function Feed({user,handleLogout}){
     }, []);
     
 
+    const deletePost = async (postId) => {
+        try {
+            const data = await postsAPI.deletePost(postId);
+            const postArray = await posts.filter(post => post._id !== postId);
+            setPosts(postArray);
+        } catch(err) {
+            console.log(err, '<==== err from revomePost')
+            setError(err);
+        }
+    }
 
     if (error) {
         return (
-          <>
+        <>
             <PageHeader handleLogout={handleLogout} user={user}/>
             <ErrorMessage error={error} />;
-          </>
+        </>
         );
-      }
+    }
     
-      if (loading) {
+    if (loading) {
         return (
-          <>
+        <>
             <PageHeader handleLogout={handleLogout} user={user}/>
             <Loading />
-          </>
+        </>
         );
-      } 
+    } 
     
-      return (
+    return (
         <Grid centered>
-          <Grid.Row>
+        <Grid.Row>
             <Grid.Column>
-              <PageHeader handleLogout={handleLogout} user={user}/>
+            <PageHeader handleLogout={handleLogout} user={user}/>
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
             <Grid.Column style={{ maxWidth: 450 }}>
-              <AddPostForm handleAddPost={handleAddPost} />
+            <AddPostForm handleAddPost={handleAddPost} />
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
+        </Grid.Row>
+        <Grid.Row>
             <Grid.Column style={{ maxWidth: 450 }}>
-              <PostGallery
+            <PostGallery
                 posts={posts}
                 numPhotosCol={1}
                 isProfile={false}
                 loading={loading}
-                
+                addLike={addLike}
+                removeLike={removeLike}
+                deletePost={deletePost}
                 user={user}
-              />
+            />
             </Grid.Column>
-          </Grid.Row>
+        </Grid.Row>
         </Grid>
-      );
+    );
 }

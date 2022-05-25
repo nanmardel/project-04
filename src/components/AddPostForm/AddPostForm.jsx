@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { Button, Form, Grid, Header, Image,  Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Header } from 'semantic-ui-react';
+import "./AddPostForm.css";
+
 
 
 export default function AddPostForm(props){
@@ -26,6 +28,9 @@ export default function AddPostForm(props){
         props.handleAddPost(formData);
     }
     return(
+        <>
+        <Header as='h1'>STUDIO</Header>
+
     <Grid textAlign='center' style={{ height: '25vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
         <Segment>
@@ -36,7 +41,7 @@ export default function AddPostForm(props){
                 className="form-control"
                 name="caption"
                 value={state.caption}
-                placeholder="What's on your pups mind?"
+                placeholder="What is your work about?"
                 onChange={handleChange}
                 required
             />   
@@ -47,7 +52,7 @@ export default function AddPostForm(props){
                 placeholder="upload image"
                 onChange={handleFileInput}
             />   
-            <Button
+            <Button basic color="blue"
                 type="submit"
                 className="btn"
             >
@@ -57,5 +62,6 @@ export default function AddPostForm(props){
         </Segment>
         </Grid.Column>
     </Grid>
+    </>
     ); 
 }
