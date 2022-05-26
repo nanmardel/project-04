@@ -5,31 +5,34 @@ import PostCard from '../PostCard/PostCard';
 import Loader from '../Loader/Loader';
 
 
-export default function PostFeed({posts, numPhotosCol, isProfile, loading, addLike, removeLike, user, deletePost }){
+export default function PostFeed({posts, numPhotosCol, isProfile, loading, addLike, removeLike, user, deletePost, handleNewComment }){
+
+
 
     return (
         <Card.Group itemsPerRow={numPhotosCol} stackable>
         {loading ? (
-          <Segment>
+        <Segment>
             <Dimmer active inverted>
-              <Loader size="small">Loading</Loader>
+                <Loader size="small">Loading</Loader>
             </Dimmer>
             <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Segment>
+            </Segment>
         ) : null}
         {posts.map((post) => {
-          return (
+            return (
             <PostCard
-              post={post}
-              key={post._id}
-              isProfile={isProfile}
-              addLike={addLike}
-              removeLike={removeLike}
-              deletePost={deletePost}
-              user={user}
+            post={post}
+            key={post._id}
+            isProfile={isProfile}
+            addLike={addLike}
+            removeLike={removeLike}
+            deletePost={deletePost}
+            user={user}
+            handleNewComment={handleNewComment}
             />
-          );
+            );
         })}
-      </Card.Group>
+        </Card.Group>
     )
 }

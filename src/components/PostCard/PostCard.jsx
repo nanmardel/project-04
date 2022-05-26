@@ -1,12 +1,13 @@
-import React from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import React, {useState} from "react";
+import { Card, Icon, Image, Button, Form, Comment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import {deletePost} from '../../utils/postApi';
+// import { deletePost } from '../../utils/postApi';
+// import { create } from '../../utils/commentsApi';
 
-// const BASE_URL = '/api'
 
 
-function PostCard({ post, isProfile, user, removeLike, addLike, deletePost }) {
+
+function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, handleAddComment }) {
     const likeIndex = post.likes.findIndex(
     (like) => like.username === user.username
     );
@@ -20,16 +21,31 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost }) {
   // and the clicked handler should removeLike
     const likeColor = likeIndex > -1 ? "red" : "grey";
 
-  // if the logged users id doesn't exist in the post.likes array, then the heart should be
-  // grey, because the user hasn't liked the post, and the click handler should be addLike
 
 
+// delete post
         let clickDelete = null;
         if (user) {
             clickDelete = post.user._id === user._id ? () => deletePost(post._id) : null;
-            console.log(post.user._id)
-            console.log(user._id)
         }
+
+// comment section
+        const [state, setState] = useState('')
+        const [comment, setComment] = useState('')
+
+        function handleChange(e){
+            setState({
+                ...state,
+                [e.target.name]: e.target.value
+            })
+        }
+        function handleSubmit(e){
+            e.preventDefault()
+            handleAddComment(post.Id, state, comment)
+        }
+
+
+        
     return (
     <Card key={post._id} raised>
         {isProfile ? (
@@ -59,7 +75,6 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost }) {
         </Card.Content>
         <Card.Content extra textAlign={"right"}>
         <Button basic color="blue" type='submit' className='btn' onClick={clickDelete}>Delete</Button>
-
         <Icon
             name={"heart"}
             size="large"
@@ -67,6 +82,25 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost }) {
             onClick={clickHandler}
         />
         {post.likes.length} Likes
+
+        <Comment.Group>
+    <Comment>
+      <Comment.Avatar as='a' src={post.user.photoUrl ? post.user.photoUrl :"https://react.semantic-ui.com/images/wireframe/square-image.png"} />
+      <Comment.Content>
+        <Comment.Author as='a'>{post.user.username}</Comment.Author>
+        <Comment.Text onChange={handleChange} >{post.comment}</Comment.Text>
+        <Form reply onClick={handleSubmit}>
+          <Form.TextArea />
+          <Button
+            content='Comment'
+            labelPosition='left'
+            icon='pencil'
+            primary
+          />
+        </Form>
+      </Comment.Content>
+    </Comment>
+  </Comment.Group>
         </Card.Content>
     </Card>
     );
@@ -75,5 +109,21 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost }) {
 export default PostCard;
 
 
-// onClick={`${post.deletePost(post._id)}`}
-// onClick={`${deletePost(post._id)}`}
+
+
+
+
+{/* <Form.TextArea onSubmit={handleSubmit}
+type = 'text'
+name="comment"
+placeholder='leave a comment'
+value={state.comment}
+onChange={handleChange}
+/>
+<Button 
+    basic color="blue"
+    type="submit"
+    className="btn"
+    >
+    Submit
+</Button> */}

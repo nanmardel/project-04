@@ -56,8 +56,8 @@ export default function SignUpPage(props) {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
-          <Image src="https://i.imgur.com/AiET68K.jpg" /> Sign Up
+        <Header as="h1" color="blue" textAlign="center">
+          <Image src="https://i.imgur.com/AiET68K.jpg" /> Studio
         </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked>
@@ -93,7 +93,7 @@ export default function SignUpPage(props) {
               required
             />
             <Form.TextArea
-              label="bio"
+              label="Bio"
               name="bio"
               placeholder="Tell us about your work"
               onChange={handleChange}
@@ -107,7 +107,7 @@ export default function SignUpPage(props) {
                 
               />
             </Form.Field>
-            <Button type="submit" className="btn">
+            <Button  basic color='blue' type="submit" className="btn">
               Signup
             </Button>
           </Segment>

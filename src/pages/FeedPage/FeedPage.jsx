@@ -3,6 +3,7 @@ import PageHeader from '../../components/Header/Header';
 import AddPostForm from '../../components/AddPostForm/AddPostForm';
 import PostGallery from '../../components/PostGallery/PostGallery';
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import * as commentsAPI from "../../utils/commentsApi";
 import * as postsAPI  from '../../utils/postApi'
 import * as likesAPI from '../../utils/likeApi';
 
@@ -10,13 +11,13 @@ import Loading from "../../components/Loader/Loader";
 
 
 import {Grid} from "semantic-ui-react";
-// import { post } from '../../../routes/api/users';
 
 
 export default function Feed({user,handleLogout}){
     console.log(postsAPI, "<-- postAPI")
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true);
+    const [comments, setComments] = useState('');
     const [error, setError] = useState('');
 
     async function addLike(postId) {
@@ -86,6 +87,16 @@ export default function Feed({user,handleLogout}){
         }
     }
 
+    const handleAddComment = async (postId, comments) => {
+        try {
+            const data = await commentsAPI.create(postId, comments)
+            setComments([data.comments, ...comments]);
+            setLoading(false);
+        } catch(err){
+            setError(err);
+        }
+    }
+
     if (error) {
         return (
         <>
@@ -127,6 +138,7 @@ export default function Feed({user,handleLogout}){
                 removeLike={removeLike}
                 deletePost={deletePost}
                 user={user}
+                handleAddComment={handleAddComment}
             />
             </Grid.Column>
         </Grid.Row>

@@ -1,3 +1,15 @@
+body {
+  background-image: url(https://i.imgur.com/B9fIRhI.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h2.ui.teal.center.aligned.header {
+  color: white;
+}
+
+
+
 .App {
   text-align: center;
 }
@@ -14,7 +26,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +47,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1.ui.header {
+  color: white;
+}
+
+div.ui.stackable.one.cards {
 }
