@@ -108,22 +108,3 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, hand
 
 export default PostCard;
 
-
-
-
-
-
-{/* <Form.TextArea onSubmit={handleSubmit}
-type = 'text'
-name="comment"
-placeholder='leave a comment'
-value={state.comment}
-onChange={handleChange}
-/>
-<Button 
-    basic color="blue"
-    type="submit"
-    className="btn"
-    >
-    Submit
-</Button> */}
