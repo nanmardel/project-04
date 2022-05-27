@@ -1,6 +1,6 @@
 # Studio
 
-*Studo* is meant to be a communal space for artist to be able to share their work and receive feeback from other members throughout their making process.
+*Studo* is meant to be a communal space in which artist can share images of their work and receive feedback from other users.
 
 ## Screenshots of App 
 
