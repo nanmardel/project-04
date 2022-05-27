@@ -1,37 +1,30 @@
-## Setup 
+# Studio
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv mern-boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+*Studo* is meant to be a communal space for artist to be able to share their work and receive feeback from other members throughout their making process.
+
+## Screenshots of App 
+
+![Landing Page](https://i.imgur.com/q95iqt1.jpg)
+![Add Location](https://i.imgur.com/wE48ybl.png)
+![Add Image](https://i.imgur.com/cBZKiAb.png)
 
 
-#### Setup your git repo
+## Technologies Used
+1. JavaScript
+2. Node.js
+3. MongoDB
+4. Express
+5. React 
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2. Then you can run the following commands in the root of your project 
+## Getting Started
+App link: https://studio-space-online.herokuapp.com/login
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be, look at the address in the code github gives you!
-git push -u origin main
-```
+Trello board: https://trello.com/b/FXgB3bT7/project-04-studio
 
-#### Setup the App
+## Feature Enhancements
 
-```npm install```
-
-*DOTENV*
-
-`touch .env`
-
-add your variables
-
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
-
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+ To improve the app, I would like to:
+ 
+ 0. Implement comment feature 
+ 1. Allow users to edit their comments
+ 2. Work on CSS
