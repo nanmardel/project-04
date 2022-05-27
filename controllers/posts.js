@@ -50,8 +50,6 @@ async function deletePost(req, res){
         const post = await Post.findByIdAndDelete(req.params.id);
         res.status(200).json({post})
 
-        // if(!user.equals(req.user.id)) return res.sendStatus(404);
-        // res.send(post)
     } catch (err){
         res.status(400).json({err})
     }

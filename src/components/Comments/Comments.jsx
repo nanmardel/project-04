@@ -1,11 +1,11 @@
 import {useState} from 'react';
-import { Button, Comment, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 
-export default function addComment(postId) {
-    const [comment, setComment] = useState('')
+export default function addComment({postId, handleAddComment}) { 
     const [state, setState] = useState({
-        body: ''
+        comment: '',
+        // username: '',
     })
 
     function handleChange(e) {
@@ -15,30 +15,29 @@ export default function addComment(postId) {
         })
     }
 
-    function handleSubmit(e) {
+
+    function handleSubmit(e){
         e.preventDefault()
-
-        const comment = new Comment()
-        comment.append('body', state.body)
-        handleAddComment(postId);
+        handleAddComment({
+            comment: state.comment,
+            postId: postId,  
+        })
     }
-
     return (
-        <Form  autoComplete="off" onSubmit={handleSubmit}>
-        <Form.TextArea
-        type = 'text'
-        name="comment"
-        value={state.comment}
-        onChange={handleChange}
-        />
-        <Button 
+        <Form autoComplete='off' onSubmit={handleSubmit}>
+            <Form.TextArea
+            type='text'
+            name='comment'
+            value={state.comment}
+            onChange={handleChange}
+            />
+            <Button
             basic color="blue"
             type="submit"
-            className="btn"
-            >
-            Submit
-            </Button>
+            className='btn'
+            ></Button>
         </Form>
     )
-
 }
+
+

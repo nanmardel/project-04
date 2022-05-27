@@ -13,7 +13,7 @@ import Loading from "../../components/Loader/Loader";
 import {Grid} from "semantic-ui-react";
 
 
-export default function Feed({user,handleLogout}){
+export default function Feed({user,handleLogout, getPostById}){
     console.log(postsAPI, "<-- postAPI")
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true);
@@ -86,17 +86,14 @@ export default function Feed({user,handleLogout}){
             setError(err);
         }
     }
-
-    const handleAddComment = async (postId, comments) => {
+    async function handleAddComment(commentData)  {
         try {
-            const data = await commentsAPI.create(postId, comments)
-            setComments([data.comments, ...comments]);
-            setLoading(false);
-        } catch(err){
-            setError(err);
+            await commentsAPI.create(commentData)
+            getPostById()
+        }catch(err) {
+            console.log(err)
         }
     }
-
     if (error) {
         return (
         <>

@@ -15,7 +15,6 @@ async function create(req, res){
     post.comments.push({
         username:req.user.username,
         userId:req.user._id,
-        postId:req.params.Id,
         comment: req.body.comment,
     })
     await post.save()

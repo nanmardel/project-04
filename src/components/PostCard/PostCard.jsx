@@ -1,13 +1,8 @@
 import React, {useState} from "react";
 import { Card, Icon, Image, Button, Form, Comment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-// import { deletePost } from '../../utils/postApi';
-// import { create } from '../../utils/commentsApi';
 
-
-
-
-function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, handleAddComment }) {
+export default function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, handleAddComment}) {
     const likeIndex = post.likes.findIndex(
     (like) => like.username === user.username
     );
@@ -28,10 +23,12 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, hand
         if (user) {
             clickDelete = post.user._id === user._id ? () => deletePost(post._id) : null;
         }
-
-// comment section
+ // comments 
+        // function addComment(handleAddComment) {
         const [state, setState] = useState('')
-        const [comment, setComment] = useState('')
+        
+        // const [comment, setComment] = useState('')
+        
 
         function handleChange(e){
             setState({
@@ -39,15 +36,18 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, hand
                 [e.target.name]: e.target.value
             })
         }
+        
         function handleSubmit(e){
             e.preventDefault()
-            handleAddComment(post.Id, state, comment)
+            handleAddComment({
+                comment: state.comment,
+                postId: post.Id,  
+            })
         }
 
-
         
-    return (
-    <Card key={post._id} raised>
+        return (
+        <Card key={post._id} raised>
         {isProfile ? (
         ""
         ) : (
@@ -85,26 +85,25 @@ function PostCard({ post, isProfile, user, removeLike, addLike, deletePost, hand
 
         <Comment.Group>
     <Comment>
-      <Comment.Avatar as='a' src={post.user.photoUrl ? post.user.photoUrl :"https://react.semantic-ui.com/images/wireframe/square-image.png"} />
-      <Comment.Content>
+        <Comment.Avatar as='a' src={post.user.photoUrl ? post.user.photoUrl :"https://react.semantic-ui.com/images/wireframe/square-image.png"} />
+        <Comment.Content>
         <Comment.Author as='a'>{post.user.username}</Comment.Author>
         <Comment.Text onChange={handleChange} >{post.comment}</Comment.Text>
         <Form reply onClick={handleSubmit}>
-          <Form.TextArea />
-          <Button
+        <Form.TextArea />
+        <Button
             content='Comment'
             labelPosition='left'
             icon='pencil'
             primary
-          />
+        />
         </Form>
-      </Comment.Content>
+    </Comment.Content>
     </Comment>
-  </Comment.Group>
+</Comment.Group>
         </Card.Content>
     </Card>
-    );
-}
+    )
+} 
 
-export default PostCard;
-
+ 
