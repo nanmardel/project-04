@@ -15,7 +15,7 @@
 3. React
 4. Node.js
 5. JavaScript
-6. CSS
+6. Semantic UI React
 
 ## Getting Started
 App link: https://studio-space-online.herokuapp.com/login
