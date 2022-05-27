@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Header, Segment, Image, Icon } from "semantic-ui-react";
+import "./Header.css";
+
 
 export default function PageHeader({ user, handleLogout }) {
     console.log(user, 'user in header')

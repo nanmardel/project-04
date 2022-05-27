@@ -26,7 +26,6 @@ async function deleteLike(req, res){
         const post = await Post.findOne({'likes._id': req.params.id, 'likes.username': req.user.username});
         post.likes.remove(req.params.id) // mutating a document
 		console.log(post, " <-= post in delete!")
-        // req.params.id is the like id 
         await post.save() // after you mutate a document you must save
         res.json({data: 'like removed'})
     } catch(err){

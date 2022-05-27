@@ -6,6 +6,8 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import * as commentsAPI from "../../utils/commentsApi";
 import * as postsAPI  from '../../utils/postApi'
 import * as likesAPI from '../../utils/likeApi';
+import "./FeedPage.css";
+
 
 import Loading from "../../components/Loader/Loader";
 

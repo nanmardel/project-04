@@ -5,7 +5,6 @@ import { Button, Form } from 'semantic-ui-react'
 export default function addComment({postId, handleAddComment}) { 
     const [state, setState] = useState({
         comment: '',
-        // username: '',
     })
 
     function handleChange(e) {
