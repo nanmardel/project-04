@@ -4,9 +4,9 @@
 
 ## Screenshots of App 
 
-![Landing Page]()
-![Add Location]()
-![Add Image]()
+![Landing Page](https://i.imgur.com/dEizX2j.png)
+![Add Artwork](https://i.imgur.com/FJKDu2R.png)
+![User Profile Page](https://i.imgur.com/oGSHTs5.png)
 
 
 ## Technologies Used
