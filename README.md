@@ -4,17 +4,18 @@
 
 ## Screenshots of App 
 
-![Landing Page](https://i.imgur.com/q95iqt1.jpg)
-![Add Location](https://i.imgur.com/wE48ybl.png)
-![Add Image](https://i.imgur.com/cBZKiAb.png)
+![Landing Page]()
+![Add Location]()
+![Add Image]()
 
 
 ## Technologies Used
-1. JavaScript
-2. Node.js
-3. MongoDB
-4. Express
-5. React 
+1. MongoDB
+2. Express
+3. React
+4. Node.js
+5. JavaScript
+6. CSS
 
 ## Getting Started
 App link: https://studio-space-online.herokuapp.com/login
